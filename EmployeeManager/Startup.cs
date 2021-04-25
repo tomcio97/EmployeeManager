@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EmployeeManager.Data;
+using EmployeeManager.Application.Interfaces;
+using EmployeeManager.Application.Services;
 using EmployeeManager.Database;
+using EmployeeManager.Database.Repository;
+using EmployeeManager.Domain.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,6 +33,14 @@ namespace EmployeeManager
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews();
+
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<IContactRepository, ContactRepository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
+            services.AddTransient<IContactService, ContactService>();
+            services.AddTransient<IAddressService, AddressService>();
+            services.AddAutoMapper(typeof(Startup).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

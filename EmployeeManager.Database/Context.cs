@@ -12,6 +12,8 @@ namespace EmployeeManager.Database
     public class Context: IdentityDbContext
     {
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         public Context(DbContextOptions<Context> options) :base(options)
         {

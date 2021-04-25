@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManager.Domain", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManager.Database", "EmployeeManager.Database\EmployeeManager.Database.csproj", "{C042714B-8DB3-45FD-8F42-95D027194ED5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManager.Application", "EmployeeManager.Application\EmployeeManager.Application.csproj", "{AF49484C-7847-4878-90BF-8FC75493F97F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManager.Application", "EmployeeManager.Application\EmployeeManager.Application.csproj", "{AF49484C-7847-4878-90BF-8FC75493F97F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

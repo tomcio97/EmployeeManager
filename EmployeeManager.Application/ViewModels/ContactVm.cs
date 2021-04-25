@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeManager.Domain.Models
+namespace EmployeeManager.Application.ViewModels
 {
-    public abstract class BaseModel
+   public class ContactVm
     {
         public int Id { get; set; }
+        public int TelephoneNumber { get; set; }
+        public string Email { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace EmployeeManager.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Employee");
         }
 
         public IActionResult Privacy()

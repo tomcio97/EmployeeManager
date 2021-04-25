@@ -1,0 +1,35 @@
+﻿@model  EmployeeManager.Application.ViewModels.EmployeeVm;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Eloo</h1>
+<form asp-action="CreateEmployee">
+    <label asp-for="Name">Name: </label>
+    <input type="text" asp-for="Name" />
+    <label asp-for="Surname">Surname: </label>
+    <input type="text" asp-for="Surname" />
+    <label asp-for="DateOfBirdth">Date of birdth: </label>
+    <input type="date" asp-for="DateOfBirdth" />
+    <label asp-for="Address.City">City: </label>
+    <input type="text" asp-for="Address.City" />
+    <label asp-for="Address.Street">Street: </label>
+    <input type="text" asp-for="Address.Street" />
+    <label asp-for="Address.HouseNumber">House number: </label>
+    <input type="text" asp-for="Address.HouseNumber" />
+    <label asp-for="Address.PostalCode">Postal code: </label>
+    <input type="text" asp-for="Address.PostalCode" />
+    <label asp-for="Education">Education: </label>
+    <input type="text" asp-for="Education" />
+    <label asp-for="Profession">Profession: </label>
+    <input type="text" asp-for="Profession" />
+    <label asp-for="Position">Position: </label>
+    <input type="text" asp-for="Position" />
+    <label asp-for="Contact.Email">Email: </label>
+    <input type="text" asp-for="Contact.Email" />
+    <label asp-for="Contact.TelephoneNumber">Telephone number: </label>
+    <input type="text" asp-for="Contact.TelephoneNumber" />
+
+
+    <button>Save</button>
+</form>
