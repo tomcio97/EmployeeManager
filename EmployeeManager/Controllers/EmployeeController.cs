@@ -7,11 +7,13 @@ using EmployeeManager.Application.ViewModels;
 using EmployeeManager.Database;
 using EmployeeManager.Database.Repository;
 using EmployeeManager.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManager.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService employeeService;
