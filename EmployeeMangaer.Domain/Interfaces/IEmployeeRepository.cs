@@ -9,5 +9,8 @@ namespace EmployeeManager.Domain.Interfaces
 {
    public interface IEmployeeRepository : IBaseRepository<Employee>
     {
+        IQueryable<Employee> GetEmployees();
+
+        Task<Employee> GetEmployeeById(int id);
     }
 }

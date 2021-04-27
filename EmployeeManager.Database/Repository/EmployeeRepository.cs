@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using EmployeeManager.Domain.Interfaces;
 using EmployeeManager.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManager.Database.Repository
 {
@@ -17,5 +16,18 @@ namespace EmployeeManager.Database.Repository
             this.context = context;
         }
 
+        public async Task<Employee> GetEmployeeById(int id)
+        {
+            return await context.Employees.FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        public IQueryable<Employee> GetEmployees()
+        {
+          var employees = this.context.Employees;
+
+            Console.WriteLine("dupa");
+
+            return employees;
+        }
     }
 }

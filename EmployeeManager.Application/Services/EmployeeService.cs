@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using EmployeeManager.Application.Interfaces;
 using EmployeeManager.Application.ViewModels;
 using EmployeeManager.Domain.Interfaces;
 using EmployeeManager.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManager.Application.Services
 {
@@ -15,11 +14,13 @@ namespace EmployeeManager.Application.Services
     {
         private readonly IEmployeeRepository employeeRepository;
         private readonly IMapper mapper;
+        private readonly IConfigurationProvider configurationProvider;
 
-        public EmployeeService(IEmployeeRepository employeeRepository, IMapper mapper)
+        public EmployeeService(IEmployeeRepository employeeRepository, IMapper mapper, IConfigurationProvider configurationProvider)
         {
             this.employeeRepository = employeeRepository;
             this.mapper = mapper;
+            this.configurationProvider = configurationProvider;
         }
 
         public async Task<int> CreateEmployee(EmployeeVm employeeVm)
@@ -34,6 +35,17 @@ namespace EmployeeManager.Application.Services
 
             return -1;
 
+        }
+
+        public async Task<EmployeeVm> GetEmployeeById(int id)
+        {
+            return  mapper.Map<EmployeeVm>(await employeeRepository.GetEmployeeById(id));
+        }
+
+        public async Task<List<EmployeeVm>> GetEmployees()
+        {
+
+            return await employeeRepository.GetEmployees().ProjectTo<EmployeeVm>(configurationProvider).ToListAsync();
         }
     }
 }

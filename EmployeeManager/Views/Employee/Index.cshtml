@@ -1,4 +1,35 @@
-﻿@{
+﻿@model IEnumerable<EmployeeManager.Application.ViewModels.EmployeeVm>;
+@{
 }
 
 <a asp-action="CreateEmployee">Add new Employee</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Position</th>
+            <th>City</th>
+            <th>Email</th>
+            <th>Telephone number</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{foreach (var employee in Model)
+            {
+                    <tr>
+                        <td>@employee.Name</td>
+                        <td>@employee.Surname</td>
+                        <td>@employee.Age</td>
+                        <td>@employee.Position</td>
+                        <td>@employee.Addresses[0].City</td>
+                        <td>@employee.Contact.Email</td>
+                        <td>@employee.Contact.TelephoneNumber</td>
+                        <td><a asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">View details</a></td>
+                    </tr>
+                
+            }
+        }
+    </tbody>
+</table>

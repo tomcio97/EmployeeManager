@@ -27,15 +27,18 @@ namespace EmployeeManager.Controllers
             this.addressService = addressService;
         }
         // GET: EmployeeController
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var employees = await employeeService.GetEmployees();
+              
+            return View(employees);
         }
 
         // GET: EmployeeController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var employee = await employeeService.GetEmployeeById(id);
+            return View(employee);
         }
 
         // GET: EmployeeController/Create

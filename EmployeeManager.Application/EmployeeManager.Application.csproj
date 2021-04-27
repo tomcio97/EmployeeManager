@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EmployeeManager.Database\EmployeeManager.Database.csproj" />
     <ProjectReference Include="..\EmployeeMangaer.Domain\EmployeeManager.Domain.csproj" />
   </ItemGroup>
 
