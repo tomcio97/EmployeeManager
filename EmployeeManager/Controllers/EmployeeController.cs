@@ -108,11 +108,13 @@ namespace EmployeeManager.Controllers
         // POST: EmployeeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> DeleteEmployee(int id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                await employeeService.DeleteEmployee(id);
+
+                return RedirectToAction("Index");
             }
             catch
             {

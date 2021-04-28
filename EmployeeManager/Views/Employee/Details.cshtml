@@ -21,14 +21,10 @@
         <p>@address.Street</p>
         <p>@address.HouseNumber</p>
         <p>@address.PostalCode</p>
-        <a class="btn btn-info" asp-action="EditEmployee" asp-route-id="@Model.Id">Edit</a>
     }
+    <a class="btn btn-info" asp-action="EditEmployee" asp-route-id="@Model.Id">Edit</a>
+
+    <form asp-action="DeleteEmployee" asp-route-id="@Model.Id">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
 </div>
-
-
-
-
-
-
-
-

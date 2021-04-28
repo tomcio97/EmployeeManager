@@ -38,6 +38,13 @@ namespace EmployeeManager.Application.Services
 
         }
 
+        public async Task<bool> DeleteEmployee(int id)
+        {
+            employeeRepository.Delete(await employeeRepository.GetEmployeeById(id));
+
+            return await employeeRepository.SaveAll();
+        }
+
         public async Task<EmployeeVm> GetEmployeeById(int id)
         {
             return mapper.Map<EmployeeVm>(await employeeRepository.GetEmployeeById(id));
