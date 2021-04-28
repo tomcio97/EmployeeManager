@@ -12,5 +12,7 @@ namespace EmployeeManager.Domain.Interfaces
         IQueryable<Employee> GetEmployees();
 
         Task<Employee> GetEmployeeById(int id);
+
+        void UpdateEmployee(Employee employee);
     }
 }

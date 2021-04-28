@@ -1,8 +1,34 @@
 ﻿@model EmployeeManager.Application.ViewModels.EmployeeVm;
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Employee Manager";
+
 }
 
-<p>@Model.Name</p>
-<p>@Model.Surname</p>
-<p>@Model.Age</p>
+
+<div data-content class="w-100">
+    <p>@Model.Name</p>
+    <p>@Model.Surname</p>
+    <p>@Model.Age</p>
+    <p>@Model.DateOfBirdth.ToShortDateString()</p>
+    <p>@Model.Education</p>
+    <p>@Model.Profession</p>
+    <p>@Model.Position</p>
+    <p>@Model.Contact.Email</p>
+    <p>@Model.Contact.TelephoneNumber</p>
+    @foreach (var address in Model.Addresses)
+    {
+        <p>@address.City</p>
+        <p>@address.Street</p>
+        <p>@address.HouseNumber</p>
+        <p>@address.PostalCode</p>
+        <a class="btn btn-info" asp-action="EditEmployee" asp-route-id="@Model.Id">Edit</a>
+    }
+</div>
+
+
+
+
+
+
+
+

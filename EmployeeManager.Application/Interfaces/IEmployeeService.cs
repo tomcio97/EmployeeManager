@@ -15,5 +15,7 @@ namespace EmployeeManager.Application.Interfaces
         Task<List<EmployeeVm>> GetEmployees();
 
         Task<EmployeeVm> GetEmployeeById(int id);
+
+        Task<bool> UpdateEmployee(EmployeeVm employeeVm);
     }
 }

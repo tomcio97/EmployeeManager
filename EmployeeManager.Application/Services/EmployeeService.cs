@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -39,13 +40,20 @@ namespace EmployeeManager.Application.Services
 
         public async Task<EmployeeVm> GetEmployeeById(int id)
         {
-            return  mapper.Map<EmployeeVm>(await employeeRepository.GetEmployeeById(id));
+            return mapper.Map<EmployeeVm>(await employeeRepository.GetEmployeeById(id));
         }
 
         public async Task<List<EmployeeVm>> GetEmployees()
         {
 
             return await employeeRepository.GetEmployees().ProjectTo<EmployeeVm>(configurationProvider).ToListAsync();
+        }
+
+        public async Task<bool> UpdateEmployee(EmployeeVm employeeVm)
+        {
+            employeeRepository.UpdateEmployee(mapper.Map<Employee>(employeeVm));
+
+            return await employeeRepository.SaveAll();
         }
     }
 }

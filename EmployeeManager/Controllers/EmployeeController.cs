@@ -30,7 +30,8 @@ namespace EmployeeManager.Controllers
         public async Task<IActionResult> Index()
         {
             var employees = await employeeService.GetEmployees();
-              
+
+
             return View(employees);
         }
 
@@ -71,18 +72,25 @@ namespace EmployeeManager.Controllers
         }
 
         // GET: EmployeeController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> EditEmployee(int id)
         {
-            return View();
+            return View(await employeeService.GetEmployeeById(id));
         }
 
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> EditEmployee(int id, int contactId, int addressId, IFormCollection collection, EmployeeVm employee)
         {
             try
             {
+                employee.Id = id;
+                employee.Addresses[0].Id = addressId;
+                employee.Contact.Id = contactId;
+
+
+                await employeeService.UpdateEmployee(employee);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

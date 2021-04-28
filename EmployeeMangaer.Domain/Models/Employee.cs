@@ -15,7 +15,7 @@ namespace EmployeeManager.Domain.Models
         public string Education { get; set; }
         public string Profession { get; set; }
         public string Position { get; set; }
-        public ICollection<Address> Addresses { get; set; }
+        public List<Address> Addresses { get; set; }
 
         public Contact Contact { get; set; }
     }

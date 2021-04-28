@@ -18,16 +18,19 @@ namespace EmployeeManager.Database.Repository
 
         public async Task<Employee> GetEmployeeById(int id)
         {
-            return await context.Employees.FirstOrDefaultAsync(e => e.Id == id);
+            return await context.Employees.Include(x => x.Addresses).Include(x => x.Contact).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public IQueryable<Employee> GetEmployees()
         {
-          var employees = this.context.Employees;
-
-            Console.WriteLine("dupa");
+            var employees = this.context.Employees;
 
             return employees;
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            context.Update(employee);
         }
     }
 }
