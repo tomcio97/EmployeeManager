@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using EmployeeManager.Application.Interfaces;
 using EmployeeManager.Application.ViewModels;
-using EmployeeManager.Database;
-using EmployeeManager.Database.Repository;
-using EmployeeManager.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +14,7 @@ namespace EmployeeManager.Controllers
         private readonly IContactService contactService;
         private readonly IAddressService addressService;
 
-        public EmployeeController(IEmployeeService employeeService, IContactService contactService, IAddressService addressService)
+        public EmployeeController(IEmployeeService employeeService, IContactService contactService, IAddressService addressService) 
         {
             this.employeeService = employeeService;
             this.contactService = contactService;
@@ -70,6 +64,8 @@ namespace EmployeeManager.Controllers
                 return View();
             }
         }
+
+ 
 
         // GET: EmployeeController/Edit/5
         public async Task<ActionResult> EditEmployee(int id)

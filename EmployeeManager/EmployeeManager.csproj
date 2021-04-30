@@ -20,4 +20,8 @@
     <ProjectReference Include="..\EmployeeMangaer.Domain\EmployeeManager.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

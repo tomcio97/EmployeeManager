@@ -3,8 +3,77 @@
     ViewData["Title"] = "Home Page";
 }
 
+@*<div class="col-md-10 mx-auto py-4">
+    <div class="card">
+        <div class="card-header bg-primary text-uppercase text-white">
+            <h4>Add New </h4>
+        </div>
+        <div class="card-body">
+            <form enctype="multipart/form-data" asp-action="CreateEmployee">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Surname" class="control-label"></label>
+                            <input asp-for="Surname" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="DateOfBirdth" class="control-label"></label>
+                            <input asp-for="DateOfBirdth" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Position" class="control-label"></label>
+                            <input asp-for="Position" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Profession" class="control-label"></label>
+                            <input asp-for="Profession" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Education" class="control-label"></label>
+                            <input asp-for="Education" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ProfileImage" class="control-label"></label>
+                            <div class="custom-file">
+                                <input asp-for="ProfileImage" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="submit" class="btn btn-sm btn-primary rounded-0 text-uppercase" />
+                    <a asp-action="Index" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-fast-backward"></i> Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>*@
+
 <h1 class="h1 p-5">Adding Employee form</h1>
-<form asp-action="CreateEmployee">
+<form enctype="multipart/form-data" asp-action="CreateEmployee">
     <table class="table">
         <tr>
             <th><label asp-for="Name">Name: </label></th>
@@ -55,8 +124,24 @@
             <td><input class="form-control" type="number" asp-for="Contact.TelephoneNumber" /></td>
         </tr>
         <tr>
+            <th><label asp-for="ProfileImage">Image: </label></th>
+            <td><input class="custom-file-input" asp-for="ProfileImage" id="customFile" /></td>
+            <th><label class="custom-file-label" for="customFile">Choose file</label></th>
+        </tr>
+        <tr>
+                
+        
+
             <th></th>
             <td>
+                <div class="form-group">
+                    <label asp-for="ProfileImage" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="ProfileImage" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>
+
                 <button class="btn btn-primary">Save</button>
                 <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
             </td>

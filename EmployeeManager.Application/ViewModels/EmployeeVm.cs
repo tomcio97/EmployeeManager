@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace EmployeeManager.Application.ViewModels
 {
@@ -13,6 +14,8 @@ namespace EmployeeManager.Application.ViewModels
         public string Education { get; set; }
         public string Profession { get; set; }
         public string Position { get; set; }
+        public string ProfilePicture { get; set; }
+        public IFormFile ProfileImage { get; set; }
         public AddressVm Address { get; set; }
         public List<AddressVm> Addresses { get; set; }
         public ContactVm Contact { get; set; }
