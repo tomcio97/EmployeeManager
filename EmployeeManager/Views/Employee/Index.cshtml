@@ -4,33 +4,37 @@
 }
 
 <a asp-action="CreateEmployee">Add new Employee</a>
-<table class="table">
+
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>Name</th>
-            <th>Surname</th>
+            <th>City</th>
             <th>Age</th>
             <th>Position</th>
-            <th>City</th>
-            <th>Email</th>
             <th>Telephone number</th>
+            <th>Salary</th>
         </tr>
     </thead>
     <tbody>
-        @{foreach (var employee in Model)
-            {
-                    <tr>
-                        <td>@employee.Name</td>
-                        <td>@employee.Surname</td>
-                        <td>@employee.Age</td>
-                        <td>@employee.Position</td>
-                        <td>@employee.Addresses[0].City</td>
-                        <td>@employee.Contact.Email</td>
-                        <td>@employee.Contact.TelephoneNumber</td>
-                        <td><a asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">View details</a></td>
-                    </tr>
-                
-            }
+        @foreach (var employee in Model)
+        {
+        <tr>
+            <td>
+                <img src="~/images/@employee.ProfilePicture"
+                     class="rounded-circle"
+                     height="40" width="40"
+                     asp-append-version="true" />
+                @employee.Name @employee.Surname
+            </td>
+            <td>@employee.Addresses[0].City</td>
+            <td>@employee.Age</td>
+            <td>@employee.Position</td>
+            <td>@employee.Contact.TelephoneNumber</td>
+            <td>@employee.Salary</td>
+            <td><a asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">Details/Manage</a></td>
+        </tr>
+
         }
     </tbody>
 </table>

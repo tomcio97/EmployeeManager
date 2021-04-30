@@ -1,9 +1,9 @@
 ﻿@model EmployeeManager.Application.ViewModels.EmployeeVm;
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Add new";
 }
 
-@*<div class="col-md-10 mx-auto py-4">
+<div class="col-md-10 mx-auto py-4">
     <div class="card">
         <div class="card-header bg-primary text-uppercase text-white">
             <h4>Add New </h4>
@@ -27,16 +27,36 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="DateOfBirdth" class="control-label"></label>
-                            <input asp-for="DateOfBirdth" class="form-control" />
+                            <label asp-for="DateOfBirdth" class="control-label">Date of birdth</label>
+                            <input type="date" asp-for="DateOfBirdth" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Address.City" class="control-label"></label>
+                            <input asp-for="Address.City" class="form-control" />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="Position" class="control-label"></label>
-                            <input asp-for="Position" class="form-control" />
+                            <label asp-for="Address.Street" class="control-label"></label>
+                            <input asp-for="Address.Street" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Address.HouseNumber" class="control-label">House number</label>
+                            <input asp-for="Address.HouseNumber" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Address.PostalCode" class="control-label">Postal code</label>
+                            <input asp-for="Address.PostalCode" class="form-control" />
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -55,10 +75,37 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="ProfileImage" class="control-label"></label>
+                            <label asp-for="Position" class="control-label"></label>
+                            <input asp-for="Position" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Contact.Email" class="control-label"></label>
+                            <input asp-for="Contact.Email" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Contact.TelephoneNumber" class="control-label">Telephone number</label>
+                            <input asp-for="Contact.TelephoneNumber" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Salary" class="control-label"></label>
+                            <input asp-for="Salary" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ProfileImage" class="control-label">Profile image</label>
                             <div class="custom-file">
-                                <input asp-for="ProfileImage" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                <input asp-for="ProfileImage" class="form-control-file" id="customFile">
                             </div>
                         </div>
                     </div>
@@ -70,9 +117,9 @@
             </form>
         </div>
     </div>
-</div>*@
+</div>
 
-<h1 class="h1 p-5">Adding Employee form</h1>
+@*<h1 class="h1 p-5">Adding Employee form</h1>
 <form enctype="multipart/form-data" asp-action="CreateEmployee">
     <table class="table">
         <tr>
@@ -126,7 +173,6 @@
         <tr>
             <th><label asp-for="ProfileImage">Image: </label></th>
             <td><input class="custom-file-input" asp-for="ProfileImage" id="customFile" /></td>
-            <th><label class="custom-file-label" for="customFile">Choose file</label></th>
         </tr>
         <tr>
                 
@@ -138,7 +184,9 @@
                     <label asp-for="ProfileImage" class="control-label"></label>
                     <div class="custom-file">
                         <input asp-for="ProfileImage" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <label class="custom-file-label" for="customFile">
+                            
+                        </label>
                     </div>
                 </div>
 
@@ -150,4 +198,4 @@
     </table>
 
 
-</form>
+</form>*@

@@ -15,6 +15,7 @@ namespace EmployeeManager.Application.ViewModels
         public string Profession { get; set; }
         public string Position { get; set; }
         public string ProfilePicture { get; set; }
+        public float Salary { get; set; }
         public IFormFile ProfileImage { get; set; }
         public AddressVm Address { get; set; }
         public List<AddressVm> Addresses { get; set; }
