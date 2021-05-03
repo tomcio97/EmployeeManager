@@ -4,30 +4,117 @@
 
 }
 
+<div class="row">
+    <div class="col-md-6">
+        <img class="card-img" src="~/images/@Model.ProfilePicture" asp-append-version="true" />
+    </div>
+    <div class="col-md-6 ">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <h3>@Model.Name</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Surname" class="control-label"></label>
+                    <h3>@Model.Surname</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="DateOfBirdth" class="control-label">Age</label>
+                    <h3>@Model.Age</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Address.City" class="control-label"></label>
+                    <h3>@Model.Addresses[0].City</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Address.Street" class="control-label"></label>
+                    <h3>@Model.Addresses[0].Street</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Address.HouseNumber" class="control-label">House number</label>
+                    <h3>@Model.Addresses[0].HouseNumber</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Address.PostalCode" class="control-label">Postal code</label>
+                    <h3>@Model.Addresses[0].PostalCode</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Profession" class="control-label"></label>
+                    <h3>@Model.Profession</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Education" class="control-label"></label>
+                    <h3>@Model.Education</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Position" class="control-label"></label>
+                    <h3>@Model.Position</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Contact.TelephoneNumber" class="control-label">Telephone number</label>
+                    <h3>@Model.Contact.TelephoneNumber</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Contact.Email" class="control-label"></label>
+                    <h3>@Model.Contact.Email</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Salary" class="control-label"></label>
+                    <h3>@Model.Salary PLN</h3>
+                </div>
+            </div>
+        </div>
+      </div>
+   </div>
 
-<div data-content class="w-100">
-
-    <img src="~/images/@Model.ProfilePicture" asp-append-version="true" />
-
-    <p>@Model.Name</p>
-    <p>@Model.Surname</p>
-    <p>@Model.Age</p>
-    <p>@Model.DateOfBirdth.ToShortDateString()</p>
-    <p>@Model.Education</p>
-    <p>@Model.Profession</p>
-    <p>@Model.Position</p>
-    <p>@Model.Contact.Email</p>
-    <p>@Model.Contact.TelephoneNumber</p>
-    @foreach (var address in Model.Addresses)
-    {
-        <p>@address.City</p>
-        <p>@address.Street</p>
-        <p>@address.HouseNumber</p>
-        <p>@address.PostalCode</p>
-    }
-    <a class="btn btn-info" asp-action="EditEmployee" asp-route-id="@Model.Id">Edit</a>
-
-    <form asp-action="DeleteEmployee" asp-route-id="@Model.Id">
-        <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
+<div class="row mt-3">
+    <div class="col-md-5"></div>
+    <div class="col-md-2">
+        <div class="row">
+            <form asp-action="DeleteEmployee" asp-route-id="@Model.Id">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <a class="btn btn-info ml-2" asp-action="EditEmployee" asp-route-id="@Model.Id">Edit</a>
+        </div>
+    </div>
+    <div class="col-md-5"></div>
 </div>
+    
+

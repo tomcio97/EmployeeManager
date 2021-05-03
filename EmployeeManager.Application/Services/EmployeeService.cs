@@ -51,9 +51,16 @@ namespace EmployeeManager.Application.Services
 
         public async Task<bool> DeleteEmployee(int id)
         {
-            employeeRepository.Delete(await employeeRepository.GetEmployeeById(id));
+            var employeeEntity = await employeeRepository.GetEmployeeById(id);
+            employeeRepository.Delete(employeeEntity);
 
-            return await employeeRepository.SaveAll();
+             if(await employeeRepository.SaveAll())
+            {
+                DeleteFile(employeeEntity.ProfilePicture);
+                return true;
+            }
+
+            return false;
         }
 
         public async Task<EmployeeVm> GetEmployeeById(int id)
@@ -69,12 +76,24 @@ namespace EmployeeManager.Application.Services
 
         public async Task<bool> UpdateEmployee(EmployeeVm employeeVm)
         {
-            employeeRepository.UpdateEmployee(mapper.Map<Employee>(employeeVm));
+            var employee = await employeeRepository.GetEmployeeById(employeeVm.Id);
+            if (employeeVm.ProfileImage == null)
+            {
+                employeeVm.ProfilePicture = employee.ProfilePicture;
+            } else
+            {
+                DeleteFile(employee.ProfilePicture);
+                var uniqueFileName = UploadedFile(employeeVm);
+
+                employeeVm.ProfilePicture = uniqueFileName;
+            }
+
+            mapper.Map(employeeVm, employee);
 
             return await employeeRepository.SaveAll();
         }
 
-
+        #region FileOperation
         private string UploadedFile(EmployeeVm model)
         {
             string uniqueFileName = null;
@@ -91,5 +110,21 @@ namespace EmployeeManager.Application.Services
             }
             return uniqueFileName;
         }
+
+        private void DeleteFile(string fileName)
+        {
+            if(!String.IsNullOrEmpty(fileName))
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                string filePath = Path.Combine(uploadsFolder, fileName);
+                if(File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+
+            }
+        }
+
+        #endregion
     }
 }

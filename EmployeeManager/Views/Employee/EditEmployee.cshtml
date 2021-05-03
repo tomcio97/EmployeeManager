@@ -8,74 +8,131 @@
     if (Model.DateOfBirdth.Day < 10 && Model.DateOfBirdth.Month > 10) dateOfBirdthString = Model.DateOfBirdth.Year + "-" + Model.DateOfBirdth.Month + "-0" + Model.DateOfBirdth.Day;
 }
 
-<h1 class="h1 p-5">Edit Employee form</h1>
+<form enctype="multipart/form-data" asp-action="EditEmployee" asp-route-id="@Model.Id" asp-route-contactId="@Model.Contact.Id" asp-route-addressId="@Model.Addresses[0].Id">
+    <div class="row">
+        <div class="col-md-6">
+            <img class="card-img" data-image src="~/images/@Model.ProfilePicture" asp-append-version="true" />
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" asp-for="ProfileImage" class="form-control-file mt-3" id="customFile">
+                        <label class="custom-file-label mt-3" for="customFile">Change image</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 ">
 
-<form class="w-100" asp-action="EditEmployee" asp-route-id="@Model.Id" asp-route-contactId="@Model.Contact.Id" asp-route-addressId="@Model.Addresses[0].Id">
-
-    <table class="table">
-
-        <tr>
-            <th><label asp-for="Name">Name: </label></th>
-            <th><input class="form-control" type="text" asp-for="Name" value="@Model.Name"></th>
-        </tr>
-
-        <tr>
-            <th><label asp-for="Surname">Surname: </label></th>
-            <td><input class="form-control" type="text" asp-for="Surname" value="@Model.Surname" /></td>
-        </tr>
-        <tr>
-            <th><label asp-for="DateOfBirdth">Date of birdth: </label></th>
-            <td><input class="form-control" type="date" asp-for="DateOfBirdth" value="@dateOfBirdthString" /></td>
-        </tr>
-        <tr>
-            <th><label asp-for="Education">Education: </label></th>
-            <td><input class="form-control" type="text" asp-for="Education" value="@Model.Education" /></td>
-        </tr>
-        <tr>
-            <th> <label asp-for="Profession">Profession: </label></th>
-            <td><input class="form-control" type="text" asp-for="Profession" value="@Model.Profession" /></td>
-        </tr>
-        <tr>
-            <th><label asp-for="Position">Position: </label></th>
-            <td> <input class="form-control" type="text" asp-for="Position" value="@Model.Position" /></td>
-        </tr>
-        <tr>
-            <th><label asp-for="Contact.Email">Email: </label></th>
-            <td> <input class="form-control" type="text" asp-for="Contact.Email" value="@Model.Contact.Email" /></td>
-        </tr>
-        <tr>
-            <th><label asp-for="Contact.TelephoneNumber">Telephone number: </label></th>
-            <td><input class="form-control" type="number" asp-for="Contact.TelephoneNumber" value="@Model.Contact.TelephoneNumber" /></td>
-        </tr>
-        @for (var i = 0; i < Model.Addresses.Count; i++)
-        {
-            <tr>
-                <th><label asp-for="Addresses[i].City">City: </label></th>
-                <td><input class="form-control" type="text" asp-for="Addresses[i].City" value="@Model.Addresses[i].City" /></td>
-            </tr>
-            <tr>
-                <th><label asp-for="Addresses[i].Street">Street: </label></th>
-                <td><input class="form-control" type="text" asp-for="Addresses[i].Street" value="@Model.Addresses[i].Street" /></td>
-            </tr>
-            <tr>
-                <th><label asp-for="Addresses[i].HouseNumber">House number: </label></th>
-                <td><input class="form-control" type="text" asp-for="Addresses[i].HouseNumber" value="@Model.Addresses[i].HouseNumber" /></td>
-            </tr>
-            <tr>
-                <th><label asp-for="Addresses[i].PostalCode">Postal code: </label></th>
-                <td><input class="form-control" type="text" asp-for="Addresses[i].PostalCode" value="@Model.Addresses[i].PostalCode" /></td>
-            </tr>
-        }
-
-        <tr>
-            <th></th>
-            <td>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Surname" class="control-label"></label>
+                        <input asp-for="Surname" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DateOfBirdth" class="control-label">Date of birdth</label>
+                        <input type="date" asp-for="DateOfBirdth" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Address.City" class="control-label"></label>
+                        <input asp-for="Addresses[0].City" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Address.Street" class="control-label"></label>
+                        <input asp-for="Addresses[0].Street" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Address.HouseNumber" class="control-label">House number</label>
+                        <input asp-for="Addresses[0].HouseNumber" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Address.PostalCode" class="control-label">Postal code</label>
+                        <input asp-for="Addresses[0].PostalCode" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Profession" class="control-label"></label>
+                        <input asp-for="Profession" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Education" class="control-label"></label>
+                        <input asp-for="Education" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Position" class="control-label"></label>
+                        <input asp-for="Position" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Contact.Email" class="control-label"></label>
+                        <input asp-for="Contact.Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Contact.TelephoneNumber" class="control-label">Telephone number</label>
+                        <input asp-for="Contact.TelephoneNumber" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Salary" class="control-label"></label>
+                        <input asp-for="Salary" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row ml-2 mt-2">
                 <button type="submit" class="btn btn-primary">Save</button>
                 <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
-            </td>
-        </tr>
+            </div>
 
-    </table>
+        </div>
+    </div>
 </form>
 
 
+   <script>
+       const dataImage = document.querySelector('[data-image]');
+       const imageInput = document.getElementById('customFile');
+
+       imageInput.addEventListener('change', () => {
+
+           dataImage.setAttribute('src', URL.createObjectURL(imageInput.files[0]));
+
+       })
+
+   </script>
