@@ -3,6 +3,12 @@
     ViewData["Title"] = "Employee Manager";
 }
 
+
+    <form asp-action="Index" class="row mb-3">
+        <input class="input-group-text" name="SearchString" placeholder="Insert name or surname" type="text" />
+        <button type="submit" class="btn btn-group btn-outline-primary ml-1">Search</button>
+    </form>
+
 <a asp-action="CreateEmployee">Add new Employee</a>
 
 <table class="table table-bordered">

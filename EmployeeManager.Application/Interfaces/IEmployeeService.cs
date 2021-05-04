@@ -12,7 +12,7 @@ namespace EmployeeManager.Application.Interfaces
     {
         Task<int> CreateEmployee(EmployeeVm employeeVm);
 
-        Task<List<EmployeeVm>> GetEmployees();
+        Task<List<EmployeeVm>> GetEmployees(string searchString);
 
         Task<EmployeeVm> GetEmployeeById(int id);
 

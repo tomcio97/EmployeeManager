@@ -20,6 +20,7 @@ namespace EmployeeManager.Application.ViewModels
         public AddressVm Address { get; set; }
         public List<AddressVm> Addresses { get; set; }
         public ContactVm Contact { get; set; }
+        public string SearchString { get; set; }
 
     }
 

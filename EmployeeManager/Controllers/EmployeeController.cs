@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using EmployeeManager.Application.Interfaces;
 using EmployeeManager.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -21,10 +22,11 @@ namespace EmployeeManager.Controllers
             this.addressService = addressService;
         }
         // GET: EmployeeController
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var employees = await employeeService.GetEmployees();
+            var employees = await employeeService.GetEmployees(searchString);
 
+            
 
             return View(employees);
         }
