@@ -1,46 +1,65 @@
 ﻿@model IEnumerable<EmployeeManager.Application.ViewModels.EmployeeVm>;
 @{
     ViewData["Title"] = "Employee Manager";
+
 }
 
+<style>
+    .hide {
+        display: none;
+    }
 
-    <form asp-action="Index" class="row mb-3">
-        <input class="input-group-text" name="SearchString" placeholder="Insert name or surname" type="text" />
+</style>
+
+<form asp-action="Index" class="row mb-3">
+    <input class="input-group-text" name="SearchString" id="SearchString" placeholder="Insert name or surname" value="@ViewData["CurrentFilter"]" type="text" />
+    <div class="col">
         <button type="submit" class="btn btn-group btn-outline-primary ml-1">Search</button>
-    </form>
+        <a class="hide" data-back asp-action="Index">Back to Full List</a>
+    </div>
+</form>
+
 
 <a asp-action="CreateEmployee">Add new Employee</a>
 
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>City</th>
-            <th>Age</th>
-            <th>Position</th>
+            <th><a asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-searchString="@ViewData["CurrentFilter"]">Name</a></th>
+            <th><a asp-route-sortOrder="@ViewData["CitySortParm"]">City</a></th>
+            <th><a asp-route-sortOrder="@ViewData["AgeSortParm"]">Age</a></th>
+            <th><a asp-route-sortOrder="@ViewData["PositionSortParm"]">Position</a></th>
             <th>Telephone number</th>
-            <th>Salary</th>
+            <th><a asp-route-sortOrder="@ViewData["SalarySortParm"]">Salary</a></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var employee in Model)
         {
-        <tr>
-            <td>
-                <img src="~/images/@employee.ProfilePicture"
-                     class="rounded-circle"
-                     height="40" width="40"
-                     asp-append-version="true" />
-                @employee.Name @employee.Surname
-            </td>
-            <td>@employee.Addresses[0].City</td>
-            <td>@employee.Age</td>
-            <td>@employee.Position</td>
-            <td>@employee.Contact.TelephoneNumber</td>
-            <td>@employee.Salary</td>
-            <td><a asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">Details/Manage</a></td>
-        </tr>
+            <tr>
+                <td>
+                    <img src="~/images/@employee.ProfilePicture"
+                         class="rounded-circle"
+                         height="40" width="40"
+                         asp-append-version="true" />
+                    @employee.Name @employee.Surname
+                </td>
+                <td>@employee.Addresses[0].City</td>
+                <td>@employee.Age</td>
+                <td>@employee.Position</td>
+                <td>@employee.Contact.TelephoneNumber</td>
+                <td>@employee.Salary</td>
+                <td><a asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">Details/Manage</a></td>
+            </tr>
 
         }
     </tbody>
 </table>
+
+<script>
+    const searchInput = document.getElementById('SearchString');
+    const dataBack = document.querySelector('[data-back]');
+
+    searchInput.value ? dataBack.classList.remove('hide') : dataBack.classList.add('hide');
+
+</script>

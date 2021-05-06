@@ -69,14 +69,44 @@ namespace EmployeeManager.Application.Services
             return mapper.Map<EmployeeVm>(await employeeRepository.GetEmployeeById(id));
         }
 
-        public async Task<List<EmployeeVm>> GetEmployees(string searchString)
+        public async Task<List<EmployeeVm>> GetEmployees(string searchString, string sortOrder)
         {
-            if (String.IsNullOrEmpty(searchString))
+            var employees = employeeRepository.GetEmployees();
+
+            switch(sortOrder)
             {
-                return await employeeRepository.GetEmployees().ProjectTo<EmployeeVm>(configurationProvider).ToListAsync();
+                case "Name": employees = employees.OrderBy(x => x.Name);
+                    break;
+                case "name_desc": employees = employees.OrderByDescending(x => x.Name);
+                    break;
+                case "City": employees = employees.OrderBy(x => x.Addresses.First().City);
+                    break;
+                case "city_desc":
+                    employees = employees.OrderByDescending(x => x.Addresses.First().City);
+                    break;
+                case "Age": employees = employees.OrderByDescending(x => x.DateOfBirdth);
+                    break;
+                case "age_desc":
+                    employees = employees.OrderBy(x => x.DateOfBirdth);
+                    break;
+                case "Position": employees = employees.OrderBy(x => x.Position);
+                    break;
+                case "position_desc":
+                    employees = employees.OrderByDescending(x => x.Position);
+                    break;
+                case "Salary": employees = employees.OrderBy(x => x.Salary);
+                    break;
+                case "salary_desc":
+                    employees = employees.OrderByDescending(x => x.Salary);
+                    break;
+            }       
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                employees = employees.Where(x => x.Name.Contains(searchString) || x.Surname.Contains(searchString));
             }
 
-            return await employeeRepository.GetEmployees().Where(x => x.Name.Contains(searchString) || x.Surname.Contains(searchString)).ProjectTo<EmployeeVm>(configurationProvider).ToListAsync();
+            return await employees.ProjectTo<EmployeeVm>(configurationProvider).ToListAsync(); 
         }
 
         public async Task<bool> UpdateEmployee(EmployeeVm employeeVm)

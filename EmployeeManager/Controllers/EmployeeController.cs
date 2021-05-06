@@ -22,11 +22,16 @@ namespace EmployeeManager.Controllers
             this.addressService = addressService;
         }
         // GET: EmployeeController
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, string sortOrder)
         {
-            var employees = await employeeService.GetEmployees(searchString);
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewData["CitySortParm"] = sortOrder == "City" ? "city_desc" : "City";
+            ViewData["AgeSortParm"] = sortOrder == "Age" ? "age_desc" : "Age";
+            ViewData["PositionSortParm"] = sortOrder == "Position" ? "position_desc" : "Position";
+            ViewData["SalarySortParm"] = sortOrder == "Salary" ? "salary_desc" : "Salary";
+            ViewData["CurrentFilter"] = searchString;
 
-            
+            var employees = await employeeService.GetEmployees(searchString, sortOrder);
 
             return View(employees);
         }
