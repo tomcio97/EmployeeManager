@@ -15,6 +15,7 @@ namespace EmployeeManager.Application.Mappers
             z.DateOfBirdth.AddYears(DateTime.Today.Year - z.DateOfBirdth.Year) <= DateTime.Today ? DateTime.Today.Year - z.DateOfBirdth.Year : (DateTime.Today.Year - z.DateOfBirdth.Year)-1));
             CreateMap<ContactVm, Contact>().ReverseMap();
             CreateMap<AddressVm, Address>().ReverseMap();
+            CreateMap<Employee, EmployeeToEmailVm>().ForMember(x => x.Email, y => y.MapFrom(z => z.Contact.email));
         }
     }
 }

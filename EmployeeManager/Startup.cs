@@ -41,6 +41,8 @@ namespace EmployeeManager
             services.AddTransient<IContactService, ContactService>();
             services.AddTransient<IAddressService, AddressService>();
             services.AddAutoMapper(typeof(Startup).Assembly);
+            services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

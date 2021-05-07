@@ -1,0 +1,76 @@
+﻿@model EmployeeManager.Application.ViewModels.EmailVm;
+@{
+    ViewData["Title"] = "Admin Panel";
+    IEnumerable<EmployeeManager.Application.ViewModels.EmployeeToEmailVm> employees = ViewData["Employees"] as IEnumerable<EmployeeManager.Application.ViewModels.EmployeeToEmailVm>;
+}
+<form class="form-group" asp-action="SendEmail" >
+    <p>Send to: </p>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="SelectedOption" id="radios1" value="all" asp-for="SelectedOption"  checked>
+        <label class="form-check-label" for="exampleRadios1">
+            All
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="SelectedOption" id="radios2" value="position" asp-for="SelectedOption">
+        <label class="form-check-label" for="exampleRadios2">
+            All employees from position:
+            <select class="form-control" asp-for="Position" data-position-select disabled>
+                <option>Select</option>
+                <option value="Junior Programmer">Junior Programmer</option>
+                <option value="Senior Programmer">Senior Programmer</option>
+                <option value="Project manager">Project manager</option>
+            </select>
+        </label>
+    </div>
+    <div class="form-check disabled">
+        <input class="form-check-input" type="radio" name="SelectedOption" id="radios3" value="employee" asp-for="SelectedOption">
+        <label class="form-check-label" for="exampleRadios3">
+            Employee:
+            <select data-employee-select class="form-control" asp-for="Email" disabled>
+                <option>Select</option>
+                @if (employees != null)
+                {
+                    foreach (var employee in employees)
+                    {
+                        <option value="@employee.Email">@employee.Name @employee.Surname</option>
+                    }
+                }
+            </select>
+        </label>
+    </div>
+
+
+
+    <label for="subject" class="form-check-label" >Subject: </label>
+    <input class="input-group-text w-100" id="subject" name="subject" asp-for="Subject"/>
+    <label for="message" class="form-check-label">Message: </label>
+    <textarea class="form-control w-100" name="message" id="message" rows="3" asp-for="Message"></textarea>
+
+    <button type="submit" class="btn btn-primary">Send email</button>
+</form>
+
+<script>
+    const allRadios = document.getElementById('radios1');
+    const positionRadios = document.getElementById('radios2');
+    const employeeRadios = document.getElementById('radios3');
+
+    const positionSelect = document.querySelector('[data-position-select]');
+    const employeeSelect = document.querySelector('[data-employee-select]');
+
+    allRadios.addEventListener('change', () => {
+        positionSelect.setAttribute('disabled', 'true');
+        employeeSelect.setAttribute('disabled', 'true');
+    })
+
+    positionRadios.addEventListener('change', () => {
+        positionSelect.removeAttribute('disabled');
+        employeeSelect.setAttribute('disabled', true);
+    })
+
+    employeeRadios.addEventListener('change', () => {
+        positionSelect.setAttribute('disabled', true);
+        employeeSelect.removeAttribute('disabled');
+    })
+
+</script>
